@@ -1,0 +1,14 @@
+Write a program to input a 3-digit number and calculate the sum of its digits.
+#include <iostream>
+int main() {
+    int number, sum = 0;
+    std::cout << "Enter a 3-digit number: ";
+    std::cin >> number;
+    sum += number % 10; // Add the last digit
+    number /= 10;
+    sum += number % 10; // Add the middle digit
+    number /= 10;
+    sum += number; // Add the first digit
+    std::cout << "Sum of digits: " << sum << std::endl;
+    return 0;
+}
