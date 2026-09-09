@@ -1,0 +1,39 @@
+Write a program to generate a Fibonacci series of n numbers Where n is the input from keyboard use default constructor:-
+
+#include <iostream>
+using namespace std;
+
+class Fibonacci {
+private:
+    int n;
+public:
+    Fibonacci(int num = 0) : n(num) {}
+    void generateSeries() {
+        if (n <= 0) {
+            cout << "Please enter a positive integer." << endl;
+            return;
+        }
+        long long first = 0, second = 1, next;
+        cout << "Fibonacci Series: ";
+        for (int i = 0; i < n; i++) {
+            if (i <= 1) {
+                next = i;
+            } else {
+                next = first + second;
+                first = second;
+                second = next;
+            }
+            cout << next << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    int num;
+    cout << "Enter the number of terms for Fibonacci series: ";
+    cin >> num;
+    Fibonacci fib(num);
+    fib.generateSeries();
+    return 0;
+}
