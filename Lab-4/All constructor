@@ -1,0 +1,53 @@
+Write a program to demonstrate how all the constructor can be used in a program:-
+
+#include <iostream>
+using namespace std;
+
+class Example {
+private:
+    int value;
+public:
+    // Default constructor
+    Example() : value(0) {
+        cout << "Default constructor called." << endl;
+    }
+
+    // Parameterized constructor
+    Example(int v) : value(v) {
+        cout << "Parameterized constructor called." << endl;
+    }
+
+    // Copy constructor
+    Example(const Example& other) : value(other.value) {
+        cout << "Copy constructor called." << endl;
+    }
+
+    // Move constructor
+    Example(Example&& other) noexcept : value(other.value) {
+        cout << "Move constructor called." << endl;
+    }
+
+    void display() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+int main() {
+    // Default constructor
+    Example e1;
+    e1.display();
+
+    // Parameterized constructor
+    Example e2(10);
+    e2.display();
+
+    // Copy constructor
+    Example e3(e2);
+    e3.display();
+
+    // Move constructor
+    Example e4(std::move(e2));
+    e4.display();
+
+    return 0;
+}

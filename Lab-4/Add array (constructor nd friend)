@@ -1,0 +1,56 @@
+Write a program to input an array to add all the elements using constructor object painter and friend function:-
+
+#include <iostream>
+using namespace std;
+
+class Painter;
+
+int calculateSum(const Painter& p);
+
+class Painter {
+private:
+    int* arr;
+    int size;
+
+public:
+    Painter(int s) {
+        size = s;
+        arr = new int[size];
+    }
+    void inputElements() {
+        cout << "Enter " << size << " elements for the array:" << endl;
+        for (int i = 0; i < size; i++) {
+            cout << "Element " << i + 1 << ": ";
+            cin >> arr[i];
+        }
+    }
+
+    friend int calculateSum(const Painter& p);
+
+    ~Painter() {
+        delete[] arr;
+    }
+};
+
+int calculateSum(const Painter& p) {
+    int totalSum = 0;
+    for (int i = 0; i < p.size; i++) {
+        totalSum += p.arr[i];
+    }
+    return totalSum;
+}
+
+int main() {
+    int n;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
+    Painter painterObj(n);
+
+    painterObj.inputElements();
+    int total = calculateSum(painterObj);
+
+    cout << "\nThe sum of all elements in the array is: " << total << endl;
+
+    return 0;
+}
