@@ -1,0 +1,61 @@
+write a program using nested class to read the following information of an employee from keyboard and display it:-
+ 1>Name 
+ 2>Code 
+ 3>Designation 
+ 4>Basic Pay 
+   i>TA (10%) 
+   ii>DA (12%) 
+   iii>HRA (20%) 
+ 
+#include <iostream>
+using namespace std;
+
+class Employee {
+private:
+    class Allowances {
+    private:
+        double ta, da, hra;
+    public:
+        Allowances(double basicPay) {
+            ta = 0.10 * basicPay;
+            da = 0.12 * basicPay;
+            hra = 0.20 * basicPay;
+        }
+        void display() {
+            cout << "TA: " << ta << endl;
+            cout << "DA: " << da << endl;
+            cout << "HRA: " << hra << endl;
+        }
+    };
+    string name, code, designation;
+    double basicPay;
+    Allowances allowances;
+public:
+    Employee() : allowances(basicPay) {}
+    void read() {
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter code: ";
+        cin >> code;
+        cout << "Enter designation: ";
+        cin >> designation;
+        cout << "Enter basic pay: ";
+        cin >> basicPay;
+        allowances = Allowances(basicPay);
+    }
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Code: " << code << endl;
+        cout << "Designation: " << designation << endl;
+        cout << "Basic Pay: " << basicPay << endl;
+        cout << "Allowances:" << endl;
+        allowances.display();
+    }
+};
+
+int main() {
+    Employee emp;
+    emp.read();
+    emp.display();
+    return 0;
+}
